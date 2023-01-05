@@ -2,36 +2,70 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Like = require('../models/like');
 
-module.exports.create = async function(req, res){
-    try{
-     let post = await Post.create({
-            content: req.body.content,
-            user: req.user._id
-        });
-         
-        if (req.xhr){
-            // if we want to populate just the name of the user (we'll not want to send the password in the API), this is how we do it!
-            post = await post.populate('user', 'name').execPopulate();
+// module.exports.create = async function(req, res){
+//     try{
 
-            return res.status(200).json({
-                data: {
-                    post: post
-                },
-                message: "Post created!"
-            });
-        }
+//      let post = await Post.create({
+//             content: req.body.content,
+//             user: req.user._id
+//         });
+       
+         
+//         if (req.xhr){
+//             // if we want to populate just the name of the user (we'll not want to send the password in the API), this is how we do it!
+//             post = await post.populate('user', 'name').execPopulate();
+
+//             return res.status(200).json({
+//                 data: {
+//                     post: post
+//                 },
+//                 message: "Post created!"
+//             });
+//         }
         
         
+//         req.flash('success', 'Post published!');
+//         return res.redirect('back');
+
+//     }catch(err){
+//         req.flash('error', err);
+//         return;
+//     }
+  
+// }
+
+module.exports.create =  function(req,res){
+   
+    try{
+     
+      Post.uploadedPostpic(req,res, async function(err){
+        if(err){console.log('*****Multer Error',err)};
+
+        //console.log(req.file);
+        let post = {
+            content : req.body.content,
+            user :req.user._id
+        };
+       // console.log(post);
+        if(req.file){
+            post.postpic = Post.postpath + '/' + req.file.filename;
+
+            let newPost = await Post.create(post);
+        } 
+       
         req.flash('success', 'Post published!');
         return res.redirect('back');
 
+      })
+
     }catch(err){
+
         req.flash('error', err);
         return;
     }
-  
-}
+    
 
+}
 
 module.exports.destroy = async function(req, res){
 

@@ -6,17 +6,18 @@
   color: white;
   box-shadow: 1px 1px 1px 1px lightgrey;
 }
-#layout-header nav .mini-logo p {
+#layout-header nav .logo p {
   margin: 5px;
   font-size: 1.4rem;
   font-weight: bold;
 }
 #layout-header nav .auth-links ul {
-  margin: 5% 5px;
+  margin: 5% 10px;
   display: flex;
+  list-style-type: none;
 }
 #layout-header nav .auth-links ul li {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 #layout-header nav a {
   color: white;

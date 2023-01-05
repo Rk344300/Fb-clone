@@ -1,5 +1,5 @@
         <link rel="stylesheet" href="/css/user_profile.css">
-        
+       <div id="profile-container">
         <img src="<%= user.avatar %>" alt="<%= user.name%>" width="100">
 
         <% if(user.id == profile_user.id){ %>
@@ -16,3 +16,5 @@
             <p><%= profile_user.name %></p>
             <p><%= profile_user.email %></p>
         <%} %>
+
+    </div> 

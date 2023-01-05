@@ -1,4 +1,4 @@
-<h1>Sign In</h1>
+<!-- <h1>Sign In</h1>
 
 <form action="/users/create-session" method="POST">
     <input type="email" name="email" placeholder="Email"  required>
@@ -9,4 +9,45 @@
 
 <p>
     <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+</p> -->
+<link rel="stylesheet" href="/css/user_sign_in.css"> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div id="container">
+   <h1>Sign In</h1>
+     
+<form action="/users/create-session" method="POST">
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="form2Example1" class="form-control" name="email" placeholder="Email"  required/>
+     
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control" name="password" placeholder="Password"  required/>
+     
+    </div>
+
+  
+    <!-- Submit button -->
+    <input type="submit" class="btn btn-primary btn-block mb-4" value="Sign in">
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="/users/sign-up">Sign Up</a></p>
+      <p>or sign up with:</p>
+     
+  
+      <button type="button" class="btn btn-link btn-floating mx-1">
+       
+        <a href="/users/auth/google"> <i class="fab fa-google"></i></a>
+      </button>
+  
+      
+    </div>
+  </form>
+
+</div>
