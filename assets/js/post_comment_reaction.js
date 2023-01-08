@@ -23,7 +23,7 @@ class HandleDiffReaction {
           let myPostReaction = data.data.reaction;
           let displayElement = $(`.reaction-count-${postId}`);
   
-          console.log(data.data.likeType);
+         // console.log(data.data.likeType);
           let postType = data.data.likeType === "Comment" ? 'comment' : 'post'
   
           // displayElement.attr("data-reactions", myPostReaction);

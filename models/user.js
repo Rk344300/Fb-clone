@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema({
     avatar :{
         type : String
     },
+    usertype : {
+           type:String,
+           default:"Personal",
+           required:true
+
+    },
 
     //implement friend request feature
      friendList : [{

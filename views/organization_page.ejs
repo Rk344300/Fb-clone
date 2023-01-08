@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/Organization.css">
+<div id="home-container">
+<section id="feed-posts">
+ 
+    <div class="posts">
+   
+        <% if(locals.user && locals.user.usertype === 'Organization'){ %>
+            <img src="<%= locals.user.avatar%>" alt="">
+        <form action="/posts/create" id="new-post-form"  enctype="multipart/form-data" method="POST">
+            <input name="content" cols="30" rows="1" placeholder="what is in your mind !!" required>
+            <input type="file" name="postpic" placeholder="Post Image" required>
+            <input type="submit" value="Post">
+        </form>
+        <% } %>
+       </div>
+
+    <div id="posts-list-container">
+        <ul>
+            <% for(post of posts){ %>
+               
+               <% if(post.user.usertype === 'Organization') { %>
+
+              
+                
+                <%- include('_post') -%>
+          
+            <%} %>
+            <% } %>
+        </ul>
+    </div>
+</section>
+</div>
+
+<script src="/js/post_comment_reaction.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new HandleDiffReaction(self);
+    });
+</script> 

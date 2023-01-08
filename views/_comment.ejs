@@ -1,18 +1,30 @@
+<link rel="stylesheet" href="/css/comment.css">
+
 <li id="comment-<%= comment._id %>">
     <p>
+          
+        <div class="card border-0">
+          <div class="commentUser">
+              <img src="<%=comment.user.avatar%>" alt="">
+              <small>
+                <b>Commented By : </b> <%= comment.user.name %>
+                 </small>
+          </div>
+
         
+        <div class="comment_content">
         <%= comment.content %>
         <br>
         <% if (locals.user && locals.user.id == comment.user.id){ %>
             <small>
-                <a href="/comments/destroy/<%= comment._id %>">Delete Comment</a>
+                <a href="/comments/destroy/<%= comment._id %>"><i class="fa fa-trash" aria-hidden="true"></i></a>
             </small>
             <% } %>
-         <br>
 
-        <small>
-       <b>Commented By : </b>     <%= comment.user.name %>
-        </small>
+        </div> 
+      
+
+        
          
        
          <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
@@ -26,7 +38,7 @@
         
                     <% if(comment.commentEmojiData.post_id === comment._id) { %>
                         
-                        <div>
+                        <div class="emojies">
                          
                           <a class="toggle-like-button" data-Like="<%=comment.commentEmojiData.like.length%>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment&reaction=Like"> 👍</a> <span class="comment-reaction-like-<%=comment._id%>"> <%= comment.commentEmojiData.like.length %> </span>
                          

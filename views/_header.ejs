@@ -1,22 +1,38 @@
+
+
 <header id="layout-header">
     <nav>
-        <div class="logo">
-            <p>
-                <a href="/">FB-Clone</a>
-            </p>
+        <div class="header_left">
+           <div class="logo">
+            <i class="fab fa-facebook"></i>
+           </div>
         </div>
 
-     <div class="auth-links">
+        <div class="header_middle">
+            <% if(locals.user) {%>
+                <a href="/"> <i class="fa fa-home" aria-hidden="true"></i></a>
+               &nbsp;&nbsp; &nbsp;&nbsp;
+                <a href="/organisation"> <i class="fa fa-store" aria-hidden="true"></i></a>
+            <%}%>
+          
+        </div>
+
+     <div class="header_right">
+
 
     <ul>
         <% if (locals.user){ %>
-            <li>
+            
+            <img src="<%=locals.user.avatar%>">
+            
+            <li >
                 <a href="/users/profile/<%=locals.user._id %>">
                     <%= user.name %>
                 </a>
             </li>
+
             <li>
-                <a href="/users/sign-out">Sign Out</a>
+                <a href="/users/sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </li>
         <% }else{ %>
 

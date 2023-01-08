@@ -124,7 +124,7 @@ module.exports.acceptFriendRequest =async function(req,res){
 
 module.exports.removeFriendRequest = async function(req, res){
     try{
-    console.log(`${req.user.id} wants to remove ${req.params.id} as a friend`);
+   // console.log(`${req.user.id} wants to remove ${req.params.id} as a friend`);
 
     await User.findByIdAndUpdate(req.user.id, { $pull: {friendList: {userid : req.params.id}}});
     await User.findByIdAndUpdate(req.params.id, { $pull: {friendList: {userid:req.user.id}}});
@@ -193,7 +193,9 @@ module.exports.createSession = function(req, res){
 }
 
 module.exports.destroySession = function(req, res){
+    console.log("logged out");
     req.logout();
+    
     req.flash('success', 'You have logged out!');
 
 

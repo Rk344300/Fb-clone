@@ -42,13 +42,17 @@
 
   <!-- Repeat Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="registerRepeatPassword" class="form-control"name="confirm_password" placeholder="Confirm Password" required />
+    <input type="password" id="registerRepeatPassword" class="form-control" name="confirm_password" placeholder="Confirm Password" required />
    
   </div>
+ <div class="form-outline mb-4">
+ <label for="usertype" id="usertype" class="form-control">Select User Type</label>
+  <select name="usertype" class="form-control" id="usertype"  required>
+   <option value="Personal" class="form-control">Personal</option>
+   <option value="Organization" class="form-control">Organization</option>
 
- 
-  
-
+  </select>
+</div>
   <!-- Submit button -->
   <input type="submit" class="btn btn-primary btn-block mb-3" value="Sign UP">
 
@@ -56,11 +60,16 @@
 
 
   
-  <button type="button" class="btn btn-link btn-floating mx-1">
+  <button type="button" class="btn btn-link btn-floating mx-2">
        
     <a href="/users/auth/google"> <i class="fab fa-google"></i></a>
   </button>
 
+
+  <button type="button" class="btn btn-link btn-floating mx-2">
+       
+    <a href="/users/auth/github"> <i class="fab fa-github"></i></a>
+  </button>
   
 </form>
 

@@ -41,13 +41,30 @@ let storage = multer.diskStorage({
         cb(null,path.join(__dirname, '..', POST_PATH));
     },filename : function(req,file,cb){
         console.log(file);
-        cb(null,file.fieldname + '-' + Date.now());
+        cb(null, file.mimetype.split("/")[0] + "-" + file.fieldname + '-' + Date.now());
     }
 });
 
 //static method
 
-postSchema.statics.uploadedPostpic = multer({storage : storage}).single('postpic');
+postSchema.statics.uploadedPostpic = multer({storage:storage,
+    fileFilter:function(req,file,cb) {
+        //checks if file type is image or video, then only allow else throw an error
+    if(file.mimetype.split("/")[0] =='image' || file.mimetype.split("/")[0] =='video'){
+        //for allowing upload of file
+        cb(null, true);
+    }
+    else{
+        //for reject file
+        cb(null,false)  //passing an error instead of rejecting 
+        
+    }
+}
+}).single('postpic');
+
+
+
+// postSchema.statics.uploadedPostpic = multer({storage : storage}).single('postpic');
 postSchema.statics.postpath = POST_PATH;
 
 postSchema.plugin(deepPopulate, {

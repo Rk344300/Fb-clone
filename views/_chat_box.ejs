@@ -2,7 +2,7 @@
 <!--code for chat box -->
 <% if (locals.user){ %>
 	<div id="user-chat-box">
-		<nav class="chat-header"><i class="fa-solid fa-xmark"></i> </nav>
+		<nav class="chat-header"><i class="fa fa-times" aria-hidden="true"></i></nav>
 		<hr/>
 		<ul id="chat-messages-list">
 			<!-- <li class="other-message">
@@ -27,7 +27,7 @@
 
 <% if (locals.user){ %>
 	<script>
-		$('.fa-xmark').click(function(e){
+		$('.fa-times').click(function(e){
 			console.log("clicked",e.target.classList[2]);
 			
 			$('#user-chat-box').css('display','none');

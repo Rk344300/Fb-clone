@@ -4,36 +4,39 @@
 
 <div id="home-container">
 <section id="feed-posts">
-    <h4>Posts</h4>
+    <div class="posts">
+   
     <% if(locals.user){ %>
+        <img src="<%= locals.user.avatar%>" alt="">
     <form action="/posts/create" id="new-post-form"  enctype="multipart/form-data" method="POST">
-        <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
+        <input name="content" cols="30" rows="1" placeholder="what is in your mind !!" required>
         <input type="file" name="postpic" placeholder="Post Image" required>
         <input type="submit" value="Post">
     </form>
     <% } %>
-
+   </div>
+   <hr>
     <div id="posts-list-container">
         <ul>
             <% for(post of posts){ %>
                 
-                
+                <% if(post.user.usertype != 'Organization') { %>
                 <%- include('_post') -%>
           
+            <%} %>
             <%} %>
         </ul>
     </div>
 </section>
 
 
-
-<section id="user-friends">
-    <h4>Friends</h4>
+<!--userList-->
+<!-- <section id="user-friends">
+    <!-- <h4>Friends</h4> --
    <% if(locals.user) { %>
     
-
-  
     <% for(u of all_users){%>
+       
 
        <% if(locals.user.id != u.id){ %>
 
@@ -43,30 +46,30 @@
                
                 
                
-                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                <a href="/users/profile/<%= u.id %>" class="user_name"><%= u.name %></a>
                 &nbsp; 
                 
                 <a href="/users/profile/friends/cancel-request/<%= u.id %>"> Cancel Request </a>
         
-                <!-- <i class="fa-solid fa-message <%= u.email %> <%= u.id %>"></i> -->
+                <!-- <i class="fa-solid fa-message <%= u.email %> <%= u.id %>"></i> --
                 <% } else if( receiveList.includes(u.id)){ %>
 
                    
-                    <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                    <a href="/users/profile/<%= u.id %>" class="user_name"><%= u.name %></a>
                     &nbsp;
                     <a href="/users/profile/friends/accept-request/<%= u.id %>"> Accept Request </a>
                     OR 
                     <a href="/users/profile/friends/cancel-request/<%= u.id %>"> Cancel Request </a>
-                    <!-- <i class="fa-solid fa-message <%= u.email %> <%= u.id %>"></i> -->
+                    <i class="fa fa-comments <%= u.email %> <%= u.id %>"></i>
                     <% } else if( frndList.includes(u.id)){ %>
                        
-                        <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                        <a href="/users/profile/<%= u.id %>" class="user_name"><%= u.name %></a>
                         &nbsp;
                         <a href="/users/profile/friends/cancel-request/<%= u.id %>"> Remove Friend </a>
-                        <i class="fa-solid fa-message <%= u.email %> <%= u.id %>"></i>
+                        <i class="fa fa-comments <%= u.email %> <%= u.id %> " aria-hidden="true"></i>
                      <% } else { %>
-            
-                            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                              <h3>Add Friends</h3>
+                            <a href="/users/profile/<%= u.id %>" class="user_name"><%= u.name %></a>
                             &nbsp;&nbsp;
                             <a href="/users/profile/friends/send-request/<%= u.id%>">Add Friend</a>
     
@@ -76,15 +79,19 @@
         </p> 
         
     <% }else { %>
+      <h4 class="profile">Profile</h4>  
+      <br>
 
-      <a href="/users/profile/<%= u.id %>"><%= u.name %> | My Profile</a>
+      <a href="/users/profile/<%= u.id %>"><%= u.name %> || Profile</a>
+      <hr>
         <% } %> 
+       
 
    <% } %>
 
         
     <% } else { %>
-   <!-- IF USER is not logged in  -->
+   <!-- IF USER is not logged in  -
 
  <% for(u of all_users){%>
 
@@ -92,7 +99,8 @@
 
     <% } %>
     <% } %>
-</section> 
+</section>  -->
+<%- include('_home_sidebar') -%>
 
 <%- include('_chat_box') -%>
 
@@ -112,7 +120,7 @@
 
 <% if (locals.user){ %>
     <script>
-        $('.fa-message').click(function(e){
+        $('.fa-comments').click(function(e){
             console.log("clicked",e.target.classList[2]);
             let receiverMail = e.target.classList[2];
             let receiverId = e.target.classList[3];

@@ -1,6 +1,3 @@
-html {
-  position: absolute;
-}
 #home-container {
   display: flex;
 }
@@ -10,6 +7,9 @@ html {
   text-align: center;
 }
 
+#container #feed-posts ul {
+  list-style-type: none;
+}
 .posts {
   width: 500px;
   display: flex;
@@ -44,33 +44,7 @@ html {
   color: cadetblue;
   background: #e3e3e3;
 }
+
 #home-container #feed-posts ul {
   list-style-type: none;
-}
-
-#home-container #user-friends {
-  width: 30%;
-  padding: 10px;
-  border-left: 1px solid lightgrey;
-  height: 100%;
-}
-
-#user-friends {
-  top: 80px;
-  right: 0;
-  position: static;
-}
-#user-friends a {
-  text-decoration: none;
-  color: blue;
-  font-weight: 600;
-}
-#user-friends a:hover {
-  color: cadetblue;
-}
-.profile {
-  margin: 5px;
-}
-.user_name {
-  color: black;
 }
