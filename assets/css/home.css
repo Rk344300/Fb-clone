@@ -1,0 +1,76 @@
+html {
+  position: absolute;
+}
+#home-container {
+  display: flex;
+}
+#home-container #feed-posts {
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+}
+
+.posts {
+  width: 500px;
+  display: flex;
+  height: 170px;
+  margin: auto;
+  margin-bottom: 20px;
+
+  padding: 20px;
+}
+
+.posts img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 15px;
+}
+
+.posts form input {
+  width: 90%;
+  padding: 10px;
+  border: 0;
+  outline: none;
+  margin-bottom: 3px;
+  border-radius: 30px;
+  background: #efefef;
+  color: black;
+}
+
+.posts form input:hover {
+  color: cadetblue;
+  background: #e3e3e3;
+}
+#home-container #feed-posts ul {
+  list-style-type: none;
+}
+
+#home-container #user-friends {
+  width: 30%;
+  padding: 10px;
+  border-left: 1px solid lightgrey;
+  height: 100%;
+}
+
+#user-friends {
+  top: 80px;
+  right: 0;
+  position: static;
+}
+#user-friends a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 600;
+}
+#user-friends a:hover {
+  color: cadetblue;
+}
+.profile {
+  margin: 5px;
+}
+.user_name {
+  color: black;
+}

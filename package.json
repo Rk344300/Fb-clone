@@ -1,0 +1,35 @@
+{
+  "name": "codeial",
+  "version": "1.0.0",
+  "description": "My all social media web application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "CodingNinjas",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "^1.4.4",
+    "cookie-session": "^2.0.0",
+    "crypto": "^1.0.1",
+    "ejs": "^2.6.1",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.4.6",
+    "mongoose-deep-populate": "^3.2.0",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.2.0"
+  }
+}

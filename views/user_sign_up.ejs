@@ -1,0 +1,79 @@
+<!-- <h1>Sign Up</h1>
+
+<form action="/users/create" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    <input type="submit" value="Sign Up">
+
+</form>
+
+<p>
+    <a href="/users/auth/google">Google Sign In/Sign Up</a>
+</p> -->
+
+<link rel="stylesheet" href="/css/user_sign_up.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="container">
+<h1>Sign Up</h1>
+<form action="/users/create" method="POST">    
+<!-- Name input -->
+<div class="form-outline mb-4">
+    <input type="text" id="registerName" class="form-control" name="name" placeholder="Your Name" required/>
+    
+  </div>
+
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <input type="email" id="registerEmail" class="form-control" name="email" placeholder="Your Email" required/>
+
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" id="registerPassword" class="form-control" name="password" placeholder="Password" required />
+   
+  </div>
+
+  <!-- Repeat Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" id="registerRepeatPassword" class="form-control" name="confirm_password" placeholder="Confirm Password" required />
+   
+  </div>
+ <div class="form-outline mb-4">
+ <label for="usertype" id="usertype" class="form-control">Select User Type</label>
+  <select name="usertype" class="form-control" id="usertype"  required>
+   <option value="Personal" class="form-control">Personal</option>
+   <option value="Organization" class="form-control">Organization</option>
+
+  </select>
+</div>
+  <!-- Submit button -->
+  <input type="submit" class="btn btn-primary btn-block mb-3" value="Sign UP">
+
+  <p>Already have an account? <a href="/users/sign-in">Sign In</a> </p> 
+
+
+  
+  <button type="button" class="btn btn-link btn-floating mx-2">
+       
+    <a href="/users/auth/google"> <i class="fab fa-google"></i></a>
+  </button>
+
+
+  <button type="button" class="btn btn-link btn-floating mx-2">
+       
+    <a href="/users/auth/github"> <i class="fab fa-github"></i></a>
+  </button>
+  
+</form>
+
+
+</div>
+
+

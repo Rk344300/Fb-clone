@@ -1,0 +1,68 @@
+         <link rel="stylesheet" href="/css/user_profile.css">
+  
+       
+  <div class="container rounded bg-white mt-5 mb-5">
+       <div class="row"> <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <% if(user.id == profile_user.id){ %> 
+                <img class="rounded-circle mt-5" src="<%= user.avatar %>" alt="<%= user.name%>">
+                <span class="font-weight-bold"><%= user.name%></span>
+                <span class="text-black-50"><%= user.email%></span>
+
+                <%}else{%> 
+                    <img class="rounded-circle mt-5" src="<%= profile_user.avatar %>" alt="<%= user.name%>">  
+                    <span class="font-weight-bold"><%= profile_user.name%></span>
+                    <span class="text-black-50"><%= profile_user.email%></span>
+                    
+                 <% }%>
+
+               
+                <span> </span></div> </div> <div class="col-md-5 border-right"> 
+                    <div class="p-3 py-5"> <div class="d-flex justify-content-between align-items-center mb-3">
+                         <h4 class="text-right">Profile Settings</h4>
+                         </div>
+                         <% if(user.id == profile_user.id){ %> 
+                          <div class="row mt-2">
+                            <form action="/users/update/<%= profile_user.id %>" enctype="multipart/form-data" method="POST">
+                                    <div class="col-md-6">
+                                        <label class="labels">Name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Your name" value="<%= profile_user.name %>" required>
+                                    </div> 
+                                
+                                    <div class="col-md-6">
+                                        <label class="labels">Email ID</label>
+                                        <input type="text" name="email"  class="form-control" placeholder="enter email id" value="<%= profile_user.email %>" required>
+                                    </div> 
+                                    
+                                    <div class="col-md-6">
+                                        <label class="labels">Profile Picture</label>
+                                        <input type="file" name="avatar" class="form-control" placeholder="Profile Picture" value="">
+                                     </div> 
+                            
+                                    
+            
+                                             <div class="col-md-6">
+                                                  <div class="mt-5 text-center">
+                                                      <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                                                </div> 
+                                            </div>
+                            </form>
+                           </div> 
+                           <%}else{%> 
+                            <br>
+                            <div class="col-md-6">
+                                <label class="labels">Name : </label>
+                                <%= profile_user.name %>
+                            </div>
+                            <br>
+                           
+                            <div class="col-md-6">
+                                <label class="labels">Email : </label>
+                                <%= profile_user.email %>
+                            </div>
+                        
+                        <%} %>            
+                                   
+                                    </div>
+                                    </div>
+        

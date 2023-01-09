@@ -1,0 +1,50 @@
+#home-container {
+  display: flex;
+}
+#home-container #feed-posts {
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+}
+
+#container #feed-posts ul {
+  list-style-type: none;
+}
+.posts {
+  width: 500px;
+  display: flex;
+  height: 170px;
+  margin: auto;
+  margin-bottom: 20px;
+
+  padding: 20px;
+}
+
+.posts img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  object-fit: cover;
+  object-position: center;
+  margin-right: 15px;
+}
+
+.posts form input {
+  width: 90%;
+  padding: 10px;
+  border: 0;
+  outline: none;
+  margin-bottom: 3px;
+  border-radius: 30px;
+  background: #efefef;
+  color: black;
+}
+
+.posts form input:hover {
+  color: cadetblue;
+  background: #e3e3e3;
+}
+
+#home-container #feed-posts ul {
+  list-style-type: none;
+}

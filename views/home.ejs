@@ -1,0 +1,67 @@
+
+<link rel="stylesheet" href="/css/home.css">
+
+
+<div id="home-container">
+<section id="feed-posts">
+    <div class="posts">
+   
+    <% if(locals.user){ %>
+        <img src="<%= locals.user.avatar%>" alt="">
+    <form action="/posts/create" id="new-post-form"  enctype="multipart/form-data" method="POST">
+        <input name="content" cols="30" rows="1" placeholder="what is in your mind !!" required>
+        <input type="file" name="postpic" placeholder="Post Image" required>
+        <input type="submit" value="Post">
+    </form>
+    <% } %>
+   </div>
+   <hr>
+    <div id="posts-list-container">
+        <ul>
+            <% for(post of posts){ %>
+                
+                <% if(post.user.usertype != 'Organization') { %>
+                <%- include('_post') -%>
+          
+            <%} %>
+            <%} %>
+        </ul>
+    </div>
+</section>
+
+
+
+
+<%- include('_home_sidebar') -%>
+
+<%- include('_chat_box') -%>
+
+</div>
+
+
+<script src="/js/post_comment_reaction.js">
+</script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new HandleDiffReaction(self);
+    });
+</script> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="/js/chat_engine.js"></script>
+
+<% if (locals.user){ %>
+    <script>
+        $('.fa-comments').click(function(e){
+            console.log("clicked",e.target.classList[2]);
+            let receiverMail = e.target.classList[2];
+            let receiverId = e.target.classList[3];
+            $('#user-chat-box').css('display','block');
+            console.log('user-chat-box', '<%= locals.user.email %>',receiverMail,receiverId,'<%= locals.user.id %>');
+            new ChatEngine('user-chat-box', '<%= locals.user.email %>',receiverMail,receiverId,'<%= locals.user.id %>' );
+           
+        });
+        
+    </script>
+    <% } %>

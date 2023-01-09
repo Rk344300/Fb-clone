@@ -1,0 +1,142 @@
+<link rel="stylesheet" href="/css/post.css">
+
+
+<div class="card border-0">
+ 
+
+<li id="post-<%= post._id %>">
+  <div class="postUser">
+    <img src="<%= post.user.avatar%>" alt="">
+    <small>
+      <b> Post By : </b><%= post.user.name %>
+    </small>
+  </div>
+  <div class="post-content"><b><%= post.content %></b></div>
+<br>
+  <div class="img-del">
+    <% if(post.postpic.split("/")[1].split("-")[0] == "video"){ %>
+      <video  class="img-fluid rounded" controls>
+          <source src="<%= post.postpic %>" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+    <% } else { %> 
+    
+       <img src="<%= post.postpic %>" alt="post picture" >
+       
+         <% }%> 
+
+
+       <% if (locals.user && locals.user.id == post.user.id){ %>
+    
+        <small>
+            <a href="/posts/destroy/<%= post.id %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        </small>
+        <% } %>
+      </div>
+        
+      
+        <br>
+
+         <!-- CHANGE :: display the likes of this post, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+       
+         <!-- study about the data attribute -->
+
+
+         <small>
+            <% if (locals.user){ %>
+                <!-- <%= post.likes %> Likes -->
+            <!-- start emoji part -->
+            <% if(post.emojiData){ %>
+                <!-- <%= post.likes.length %> -->
+                 <span class="reaction-icon-<%=post._id%>"></span> 
+                <a class="reaction-count-<%=post._id%>" data-likes="" data-reactions="" disabled></a>
+    
+                <% if(post.emojiData.post_id === post._id) { %>
+    
+                <div class="emojies">
+                    <!-- <span class="reaction-icon"></span> -->
+                      <!-- Displaying selected emoji -->
+                      <a class="toggle-like-button" data-Like="<%=post.emojiData.like.length%>" href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Like"> 👍</a> <span class="post-reaction-like-<%=post._id%>"> <%= post.emojiData.like.length %> </span>
+                     <a class="toggle-like-button" data-Love="<%= post.emojiData.love.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Love"> ❤ </a>  <span class="post-reaction-love-<%=post._id%>"> <%= post.emojiData.love.length %></span>
+                       <a class="toggle-like-button" data-Sad="<%=post.emojiData.sad.length %>"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Sad"> 😞</a>  <span class="post-reaction-sad-<%=post._id%>">  <%= post.emojiData.sad.length %></span>
+                         <a class="toggle-like-button" data-Angry="<%= post.emojiData.angry.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Angry">😡</a>     <span class="post-reaction-angry-<%=post._id%>"> <%= post.emojiData.angry.length %></span>
+                           <a class="toggle-like-button" data-Wow="<%= post.emojiData.wow.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Wow">😲</a>       <span class="post-reaction-wow-<%=post._id%>"> <%= post.emojiData.wow.length %></span>
+                    
+        
+                </div>
+    
+                <% } %>
+                
+                <div>
+                  </div>
+                <% }else{ %>
+                    <div>
+    
+                        <a class="reaction-count-<%=post._id%>" data-likes="<%= post.likes.length %>" data-reactions="" disabled></a>
+                        <a class="toggle-like-button"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Like"> 👍   </a>
+                        <a class="toggle-like-button"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Love"> ❤ </a>
+                        <a class="toggle-like-button"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Sad"> 😞</a>
+                        <a class="toggle-like-button"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Angry">😡</a>
+                        <a class="toggle-like-button"  href="/likes/toggle/?id=<%=post._id%>&type=Post&reaction=Wow">😲</a>
+                      </div>
+                <% } %>
+           
+    
+                    <!-- end emoji part -->
+           
+            <% }else{ %>
+                <!-- <%= post.likes.length %> Likes -->
+                    <p>👍 <%= post.emojiData.like.length %>
+                   
+                        ❤ <%= post.emojiData.love.length %>
+                    
+                        😞 <%= post.emojiData.sad.length %>
+                    
+                        😡 <%= post.emojiData.angry.length %>
+                    
+                        😲 <%= post.emojiData.wow.length %></p>
+    
+            <% } %>
+        </small>
+    
+            </p>
+            <div class="post-comments">
+              <div class="post_comments_form">
+                <% if (locals.user){ %>
+                    <!-- let's give an id to the new comment form, we'll also need to make the same changes in home_posts.js where we're adding a post to the page -->
+                    <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
+                        <input type="text" name="content" placeholder="Type Here to add comment..." required>
+    
+                        <input type="hidden" name="post" value="<%= post._id %>" >
+                        <button type="submit" ><i class="fa fa-comment" aria-hidden="true"></i></button>
+                    </form>
+        
+                <% } %>
+
+              </div>
+    
+                <div class="post-comments-list">
+                    <ul id="post-comments-<%= post._id %>">
+                        <% for (comment of post.comments){%>
+    
+                         <%- include('_comment') -%>
+                            
+                        
+                        <%} %>
+                    </ul>
+                </div>
+            </div>
+            
+        </li>
+    
+      </div>
+
+
+        <!-- <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#!" class="btn btn-primary">Button</a>
+            </div>
+          </div> -->
